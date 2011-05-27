@@ -1,0 +1,9 @@
+Singly-Linked List. Implemented in C.
+
+This is mostly a learning exercise for me.
+This list uses pointers to void to store elements, meaning that you can store whatever you want in this list.
+
+Unfortunately, because you can't compare void pointers, there is no sorting function given. Sorting can be implemented if you know what type the pointers are, for example, if they are all pointers to int, it would be simple to implement quicksort.
+(Personally, I recommend insertion sort, due to the dynamic nature of the list, it doesn't make sense to re-sort the list every time you add a new element, as would be required by quicksort.)
+
+test.c gives a brief demonstration of all the features of this linked list library.
