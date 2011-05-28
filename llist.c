@@ -14,7 +14,28 @@ llist * linkedlist()
     return head;
 }
 
-void add(llist * list, void * data)
+int insert(llist * list, void * data, int position)
+{
+    int size = *(int *)list->data;
+    if (position > size || position < 0) {
+        fprintf(stderr, "Error: insert position out of range\n");
+        return 1;
+    } else if (position == 0) {
+        fprintf(stderr, "Error: inserting into root element not allowed\n");
+        return 2;
+    }
+    llist * foo = ;
+    while (--position > 0) {
+        foo = foo->next;
+    }
+    llist * new = calloc(1, sizeof(llist));
+    new->data = data;
+    new->next = foo->next;
+    foo->next = new;
+    return 0;
+}
+
+void append(llist * list, void * data)
 {
     llist * foo = list;
     while (foo->next != NULL) {
@@ -55,10 +76,10 @@ int replace(llist * list, void * data, int index)
 {
     int size = *(int *)list->data;
     if (index > size || index < 0) {
-        fprintf(stderr, "Attempting to replace element outside range of list.\n");
+        fprintf(stderr, "Error: Attempting to replace element outside range of list.\n");
         return 1;
     } else if (index == 0) {
-        fprintf(stderr, "Attempting to replace root list element.\n");
+        fprintf(stderr, "Error: Attempting to replace root list element.\n");
         return 2;
     }
     int i = 0;
@@ -71,6 +92,28 @@ int replace(llist * list, void * data, int index)
         foo->data = NULL;
     }
     foo->data = data;
+    *(int *)list->data++;
+    return 0;
+}
+
+int swap(llist * list, int pos1, int pos2)
+{
+    int size = *(int *)list->data;
+    if ((pos1 > size) || (pos2 > size) || (pos1 < 0) || (pos2 < 0)) {
+        fprintf(stderr, "Error: Out of range\n");
+        return 1;
+    } else if ((pos1 == 0) || (pos2 == 0)) {
+        fprintf(stderr, "Error: attempting to swap with root element\n");
+        return 2;
+    }
+    void * val1 = get(list, pos1);
+    void * val2 = get(list, pos2);
+    int ret1 = replace(list, val1, pos2);
+    int ret2 = replace(list, val2, pos1);
+    if (ret1 + ret2 != 0) {
+        fprintf(stderr, "Fatal Error: This should not happen.\n");
+        exit(1);
+    }
     return 0;
 }
 

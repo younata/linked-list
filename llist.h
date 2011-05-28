@@ -16,9 +16,11 @@ typedef struct linkedlist {
 } llist;
 
 llist * linkedlist();
-void add(llist * list, void * data);
+int insert(llist * list, void * data, int position);
+void append(llist * list, void * data);
 int del(llist * list, int index);
 int replace(llist * list, void * data, int index);
+int swap(llist * list, int pos1, int pos2);
 void * get(llist * list, int index);
 
 void clean(llist * list); // deallocates the list.
