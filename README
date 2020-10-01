@@ -1,4 +1,6 @@
-Singly-Linked List. Implemented in C.
+=========================
+Singly-Linked List( in C)
+=========================
 
 This is mostly a learning exercise for me.
 This list uses pointers to void to store elements, meaning that you can store whatever you want in this list.
